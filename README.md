@@ -3,12 +3,12 @@
 </h1>
 <br>
 
-The administration docker stack for the Vanaheim server inspired by https://github.com/pabardina/docker-traefik-gitlab.
-
-This stack contains:
+The Docker stack to manage the Vanaheim server. It contains
 
 - traefik to manage multi domains and https
 - portainer to manage containers graphically
+
+> This setup is inspired by https://github.com/pabardina/docker-traefik-gitlab.
 
 ## Getting started
 
