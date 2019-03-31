@@ -21,6 +21,8 @@ entryPoint = "https"
 OnHostRule = true
 onDemand = true
 
+[acme.tlsChallenge]
+
 [[acme.domains]]
   main = "portainer.techmind.io"
 
