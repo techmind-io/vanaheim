@@ -5,4 +5,6 @@ mkdir proxy/acme
 touch proxy/acme/acme.json
 chmod 600 proxy/acme/acme.json
 
+mkdir portainer
+
 mkdir proxy/logs
