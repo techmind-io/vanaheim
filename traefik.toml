@@ -3,9 +3,9 @@
 # Global configuration
 ################################################################
 
-defaultEntryPoints = ["http", "https"] // 1
+defaultEntryPoints = ["http", "https"]
 
-[entryPoints] // 2
+[entryPoints]
   [entryPoints.http]
   address = ":80"
     [entryPoints.http.redirect]
@@ -14,15 +14,12 @@ defaultEntryPoints = ["http", "https"] // 1
   address = ":443"
     [entryPoints.https.tls]
 
-[acme] // 3
+[acme]
 email = "thibault.friedrich@gmail.com"
 storageFile = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 OnHostRule = true
 onDemand = true
-
-[[acme.domains]] //
-  main = "samaritan.futurelife.io"
 
 [[acme.domains]]
   main = "portainer.techmind.io"
@@ -38,3 +35,14 @@ endpoint = "unix:///var/run/docker.sock"
 domain = "vanaheim.techmind.io"
 watch = true
 exposedbydefault = true
+
+
+# https://docs.traefik.io/configuration/logs/
+
+logLevel = "INFO"
+[traefikLog]
+  filePath = "/etc/traefik/logs/traefik.log"
+  format   = "json"
+[accessLog]
+  filePath = "/etc/traefik/logs/access.log"
+  format = "json"

@@ -13,5 +13,7 @@ This stack contains:
 ## Getting started
 
 ```bash
+$ chmod 600 init.sh
+$ ./init.sh
 $ docker-compose up -d
 ```
