@@ -1,0 +1,36 @@
+version: "3.2"
+services:
+  proxy:
+    # https://hub.docker.com/_/traefik
+    image: traefik # The official Traefik docker image
+    restart: always
+    command: --docker # Tells Traefik to listen to docker
+    ports:
+      - 80:80 # The HTTP port
+      - 443:443 # The HTTPS port
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+      - "$PWD/traefik.toml:/traefik.toml"
+      - "$PWD/acme:/etc/traefik/acme"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.entryPoint=https
+      - traefik.backend=traefik # https://docs.traefik.io/configuration/backends/docker/
+    networks:
+      - traefik
+  portainer:
+    image: portainer/portainer
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.frontend.rule=Host:portainer.techmind.io"
+      - "traefik.port=9000"
+      - "traefik.backend=portainer"
+      - "traefik.frontend.entryPoints=https"
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
